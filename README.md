@@ -6,15 +6,6 @@ Repositorio de curso
 1.   Elemento de la lista
 2.   Elemento de la lista
 
-
-## Análisis de impacto del precio de fabricaicón de diferentes modelos de autos según su año de fabricación: Estudio de Datos
-
-# Pre entrega n°1 - Oscar Orlando Camrgo Vargas
-
-1.   Elemento de la lista
-2.   Elemento de la lista
-
-
 ## Análisis de impacto del precio de fabricaicón de diferentes modelos de autos según su año de fabricación: Estudio de Datos
 
 ## ABSTRACT

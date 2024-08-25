@@ -38,3 +38,34 @@ Repositorio de curso
 - Determinar los factores que influyen en el precio de un vehiculo.
 - Crear informes para la toma de desiciones a la hora de la compra de un vehiculo si es mas combeniente uno sobre otro analisando diferentes variables.
 - Construir un modelo que permita comparar diferentes variables a una persona a fin de simplificar conceptos y predecir cual vehiculo es mas combeniente para difernetes presupuestos.
+
+- Resultados de la matriz
+
+precio y año : 0.52
+
+precio y engeniesize: 0.63
+
+precio y impuestos: 0.27
+
+año y consumo de combustible: -0.75
+
+año y millas: -0.75
+
+millage y cosnumo por galon: 0.94
+
+Con los resultados se puede inferir que el precio del auto es mayor si el año del vehiculo es mas reciente al igual que su precio aumenta segun el tamaño del motor y sus impuestos aumentan segun el precio del auto,  en cuanto a consumos si el modelo es resiente el consumo es menor entre mas nuevo se el modelo menos consumo tiene, y se detecto que entre mas millas tenga el vehiculo mayor es el consumo por galon, son datos que son encontrados gracias a la matriz de correlacion
+
+
+**Resultado**
+
+Relación Directa:  los gráficos muestran que los autos más nuevos tienden a tener precios más altos, esto confirmaría la hipótesis de que el año de fabricación es un factor importante en la determinación del precio.
+
+Variabilidad por Marca: Al segmentar por marca, se sabe  que algunas marcas retienen mejor su valor con el tiempo que otras.
+
+Diferencias de Precio: La transmisión automática muestra precios significativamente más altos, puede concluir que los autos automáticos son percibidos como más valiosos o que su fabricación es más costosa.
+
+Distribución de Precios: El boxplot permite ver QUE  hay mayor variabilidad en los precios de los autos automáticos en comparación con los manuales.
+
+Influencia del Tamaño del Motor: los gráficos muestran que los autos con motores más grandes tienden a ser más caros, esto confirmaría que el tamaño del motor es un factor importante en el precio del vehículo.
+
+Impacto del Tipo de Combustible: los autos que usan combustible más caro (como diésel) también tienen precios más altos, lo que podría indicar una relación entre el tipo de combustible y el valor percibido del vehículo.

@@ -1,0 +1,89 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Oscar52analitica/Esenttia/blob/main/Histograma_M%C3%A9xico\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "\n",
+        "# Cargar los datos desde Excel\n",
+        "df_mexico = pd.read_excel('tabla_intervalos.xlsx', sheet_name='Data_Original_México')\n",
+        "df_esenttia = pd.read_excel('tabla_intervalos.xlsx', sheet_name='Clientes_Esenttia')\n",
+        "\n",
+        "# Calcular el Volumen México (Ton) en la primera hoja\n",
+        "df_mexico['Volumen_Mexico_Ton'] = df_mexico['Volúmen'] / 1000\n",
+        "\n",
+        "# Filtrar los datos de la columna 'Perfil' en la primera hoja\n",
+        "df_mexico_filtrado = df_mexico[df_mexico['Perfil'].isin(['Transformador', 'Transformadores'])].copy()  # .copy() para evitar la advertencia\n",
+        "\n",
+        "# Crear los rangos para el Volumen México (Ton) usando .loc\n",
+        "bins = [0, 5, 20, 50, float('inf')]\n",
+        "labels = ['0 - 5', '5 - 20', '20 - 50', '>50']\n",
+        "df_mexico_filtrado.loc[:, 'Rango'] = pd.cut(df_mexico_filtrado['Volumen_Mexico_Ton'], bins=bins, labels=labels, right=False)\n",
+        "\n",
+        "# Comprobar que se haya creado correctamente la columna 'Rango'\n",
+        "print(df_mexico_filtrado[['Volumen_Mexico_Ton', 'Rango']].head())\n",
+        "\n",
+        "# Calcular el volumen total en cada rango\n",
+        "volumen_por_rango_mexico = df_mexico_filtrado.groupby('Rango')['Volumen_Mexico_Ton'].sum()\n",
+        "\n",
+        "# Calcular la frecuencia (conteo de productos) en cada rango para ambas hojas\n",
+        "conteo_rangos_mexico = df_mexico_filtrado['Rango'].value_counts().sort_index()\n",
+        "conteo_rangos_esenttia = df_esenttia['Rango'].value_counts().sort_index()\n",
+        "\n",
+        "# Crear el gráfico\n",
+        "plt.figure(figsize=(10, 6))\n",
+        "\n",
+        "# Gráfica de barras para el volumen total en cada rango\n",
+        "ax = sns.barplot(x=volumen_por_rango_mexico.values, y=volumen_por_rango_mexico.index, palette='viridis', orient='h')\n",
+        "\n",
+        "# Etiquetas de valor en el centro de cada barra\n",
+        "for i, value in enumerate(volumen_por_rango_mexico.values):\n",
+        "    ax.text(value / 2, i, f'{value:.1f}', ha='center', va='center', fontweight='bold', color='white')\n",
+        "\n",
+        "# Agregar las líneas de frecuencia para ambas hojas\n",
+        "plt.plot(conteo_rangos_mexico.values, conteo_rangos_mexico.index, color='blue', marker='o', linestyle='-', label='Frecuencia México')\n",
+        "plt.plot(conteo_rangos_esenttia.values, conteo_rangos_esenttia.index, color='orange', marker='o', linestyle='-', label='Frecuencia Clientes Esenttia')\n",
+        "\n",
+        "# Configurar título y etiquetas\n",
+        "plt.title('Volumen Total y Frecuencia de Productos por Intervalos')\n",
+        "plt.xlabel('Volumen Total (Ton)')\n",
+        "plt.ylabel('Intervalos de Volumen (Ton)')\n",
+        "plt.legend()\n",
+        "\n",
+        "# Mostrar gráfico\n",
+        "plt.show()\n"
+      ],
+      "metadata": {
+        "id": "c6Tc8LKuMJ4s"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "name": "Te damos la bienvenida a Colaboratory",
+      "toc_visible": true,
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
